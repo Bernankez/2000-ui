@@ -25,5 +25,10 @@
     "**/es/**",
     "**/lib/**",
     "**/dist/**"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }
