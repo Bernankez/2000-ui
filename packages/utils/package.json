@@ -1,0 +1,52 @@
+{
+  "name": "@2000-ui/utils",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.6.3",
+  "description": "Utils for 2000 UI",
+  "author": {
+    "name": "Cole",
+    "email": "bernankeic@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Bernankez/2000-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bernankez/2000-ui.git"
+  },
+  "bugs": "https://github.com/Bernankez/2000-ui/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "start": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "2000-ui",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.6.3",
+  "description": "A Vue 3 component library, presenting early-2000s web design.",
+  "author": {
+    "name": "Cole",
+    "email": "bernankeic@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Bernankez/2000-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bernankez/2000-ui.git"
+  },
+  "bugs": "https://github.com/Bernankez/2000-ui/issues",
+  "keywords": [
+    "2000-ui",
+    "component library",
+    "ui framework",
+    "ui",
+    "vue"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build"
+  },
+  "peerDependencies": {
+    "vue": ">=3.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "vite-plugin-dts": "^2.3.0",
+    "vue": "^3.3.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
