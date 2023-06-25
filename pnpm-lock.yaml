@@ -93,6 +93,8 @@ importers:
 
   packages/utils: {}
 
+  packages/vue-loader: {}
+
 packages:
 
   /@ampproject/remapping@2.2.1:
