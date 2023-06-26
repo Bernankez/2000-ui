@@ -51,6 +51,14 @@ export default defineConfig(() => {
             preserveModulesRoot: componentsDir,
             dir: "lib",
           },
+          {
+            format: "umd",
+            globals: {
+              vue: "Vue",
+            },
+            name: "2000-ui",
+            dir: "dist",
+          },
         ],
       },
     },
