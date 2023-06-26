@@ -1,3 +1,4 @@
 {
-  "extends": "@bernankez/stylelint-config"
+  "extends": "@bernankez/stylelint-config",
+  "ignoreFiles": ["**/es/**/*", "**/lib/**/*", "**/dist/**/*"]
 }

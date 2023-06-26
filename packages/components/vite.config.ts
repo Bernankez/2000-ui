@@ -27,6 +27,7 @@ export default defineConfig(() => {
     ],
     build: {
       minify: false,
+      cssCodeSplit: true,
       lib: {
         name: "2000-ui",
         entry: resolve(componentsDir, "index.ts"),
