@@ -1,11 +1,17 @@
 <template>
   <button>
-    <slot></slot>
+    <slot>{{ title }}</slot>
   </button>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  text?: string;
+withDefaults(defineProps<{
+  title?: string;
+}>(), {
+  title: "title",
+});
+
+defineEmits<{
+  click: [e:PointerEvent];
 }>();
 </script>

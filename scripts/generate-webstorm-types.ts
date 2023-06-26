@@ -33,12 +33,13 @@ export function generateWebstormTypes(outputs: string[] = []) {
   const vueComponents: any[] = [];
 
   const scaffold = {
-    $schema:
+    "$schema":
       "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
-    framework: "vue",
-    name: "2000-ui",
+    "framework": "vue",
+    "name": "2000-ui",
     version,
-    contributions: {
+    "js-types-syntax": "typescript",
+    "contributions": {
       html: {
         "vue-components": vueComponents,
       },
@@ -49,33 +50,51 @@ export function generateWebstormTypes(outputs: string[] = []) {
 
   Object.keys(globalComponents).forEach((key) => {
     if (key === "default") { return; }
-    const { props } = (globalComponents as unknown as Record<string, DefineComponent<{}, {}, any>>)[key];
+    const { props, emits } = (globalComponents as unknown as Record<string, DefineComponent<{}, {}, any>>)[key];
     const slots: any[] = [];
     const attributes: Attribute[] = [];
     const events: Event[] = [];
-    props && Object.entries(props).forEach(([propName, prop]) => {
-      // if (propName.startsWith("internal")) { return; }
-      if (ignoredPropNames.includes(propName)) { return; }
-      if (propName.startsWith("on") && /[A-Z]/.test(propName[2])) {
-        // is event
+    if (props) {
+      let _props = props;
+      if (Array.isArray(props)) {
+        _props = {};
+        props.forEach((propName) => {
+          _props[propName] = null;
+        });
+      }
+      Object.entries(_props).forEach(([propName, prop]) => {
+        // if (propName.startsWith("internal")) { return; }
+        if (ignoredPropNames.includes(propName)) { return; }
+        if (propName.startsWith("on") && /[A-Z]/.test(propName[2])) {
+          // is event
+          events.push({
+            name: kebabCase(propName.slice(2)),
+            description: "-",
+          });
+        } else {
+          const attribute: Attribute = {
+            name: kebabCase(propName),
+            default: "-",
+            description: "-",
+          };
+          const type = prop ? getType(prop) : null;
+          if (type !== null) {
+            attribute.type = type;
+          }
+          // is attribute
+          attributes.push(attribute);
+        }
+      });
+    }
+
+    if (emits && Array.isArray(emits)) {
+      emits.forEach((emit) => {
         events.push({
-          name: kebabCase(propName.slice(2)),
+          name: kebabCase(emit),
           description: "-",
         });
-      } else {
-        const attribute: Attribute = {
-          name: kebabCase(propName),
-          default: "-",
-          description: "-",
-        };
-        const type = prop ? getType(prop) : null;
-        if (type !== null) {
-          attribute.type = type;
-        }
-        // is attribute
-        attributes.push(attribute);
-      }
-    });
+      });
+    }
 
     vueComponents.push({
       "name": key,
