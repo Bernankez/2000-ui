@@ -22,6 +22,9 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
+    },
+    "./suppress-warnings": {
+      "require": "./dist/suppress-warnings.cjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -40,7 +43,8 @@
   ],
   "scripts": {
     "dev": "unbuild --stub",
-    "build": "unbuild",
+    "clean": "rimraf dist",
+    "build": "pnpm clean && unbuild",
     "start": "tsx src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -51,9 +55,12 @@
   },
   "dependencies": {
     "@babel/parser": "^7.22.5",
+    "@esbuild-kit/core-utils": "^3.1.0",
+    "get-tsconfig": "^4.6.0",
     "magic-string": "^0.30.0"
   },
   "devDependencies": {
-    "@babel/types": "^7.22.5"
+    "@babel/types": "^7.22.5",
+    "esbuild": "^0.17.8"
   }
 }

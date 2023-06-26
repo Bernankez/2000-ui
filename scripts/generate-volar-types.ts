@@ -1,16 +1,7 @@
-import path, { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
 import * as globalComponents from "../packages/components/components";
 
-const dir = typeof __dirname === "string" ? __dirname : dirname(fileURLToPath(import.meta.url));
-const root = dirname(dir);
-
-const componentsDir = "./packages/components/volar.d.ts";
-
-generateVolarTypes([componentsDir]);
-
-async function generateVolarTypes(outputs: string[] = []) {
+export async function generateVolarTypes(outputs: string[] = []) {
   if (outputs.length === 0) { return; }
   const components: Record<string, string> = {};
   const excludeComponents: string[] = [];
@@ -22,8 +13,8 @@ async function generateVolarTypes(outputs: string[] = []) {
     }
   });
 
-  const originDTS = fs.existsSync(path.resolve(root, outputs[0]))
-    ? await fs.readFile(path.resolve(root, outputs[0]), "utf-8")
+  const originDTS = fs.existsSync(outputs[0])
+    ? await fs.readFile(outputs[0], "utf-8")
     : "";
   const originImports = parseComponentsDeclaration(originDTS);
   const lines = Object.entries({
@@ -46,7 +37,7 @@ declare module 'vue' {
 export {}
 `;
   if (code !== originDTS) {
-    await Promise.allSettled(outputs.map(output => fs.writeFile(path.resolve(root, output), code, "utf-8")));
+    await Promise.allSettled(outputs.map(output => fs.writeFile(output, code, "utf-8")));
   }
 }
 

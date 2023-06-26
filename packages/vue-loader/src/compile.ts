@@ -1,11 +1,14 @@
 import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import { parse as babelParse } from "@babel/parser";
 import MagicString from "magic-string";
-
 import type { ParserPlugin } from "@babel/parser";
 import type { CallExpression, Expression, Node } from "@babel/types";
 import type { SFCDescriptor, SFCScriptBlock } from "vue/compiler-sfc";
+import { transform } from "@esbuild-kit/core-utils";
+import type { TransformOptions } from "esbuild";
 import { transferSetupPosition } from "./transform";
+import { applySourceMap, fileMatcher } from "./utils";
 
 const noScriptContent = "import { defineComponent } from 'vue'\nexport default defineComponent({})";
 
@@ -318,7 +321,7 @@ export function compileVueCode(code: string) {
 
   let error: unknown;
   let content: string;
-  let ext = "js";
+  let ext: "js" | "ts" = "js";
 
   if (script || scriptSetup) {
     const compiled = compileScript(
@@ -342,9 +345,9 @@ export function compileVueCode(code: string) {
 
     if (scriptSetup) {
       content = transferSetupPosition(content);
-      ext = scriptSetup.lang || "js";
+      ext = scriptSetup.lang as "js" | "ts" | undefined || "js";
     } else if (script && script.content) {
-      ext = script.lang || "js";
+      ext = script.lang as "js" | "ts" | undefined || "js";
     }
 
     content += "\nexport default _sfc_main\n";
@@ -354,4 +357,15 @@ export function compileVueCode(code: string) {
   }
 
   return { error, content, ext };
+}
+
+export async function compileTsCode(code: string, url: string) {
+  const filePath = url.startsWith("file://") ? fileURLToPath(url) : url;
+
+  const transformed = await transform(code, filePath, {
+    loader: "ts",
+    tsconfigRaw: fileMatcher?.(filePath) as TransformOptions["tsconfigRaw"],
+  });
+
+  return applySourceMap(transformed, url);
 }

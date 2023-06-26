@@ -1,3 +1,7 @@
+import { resolve } from "node:path";
+import { createFilesMatcher, getTsconfig, parseTsconfig } from "get-tsconfig";
+import { installSourceMapSupport } from "@esbuild-kit/core-utils";
+
 export type MaybePromise<T> = T | Promise<T>;
 
 export type ModuleFormat =
@@ -37,3 +41,14 @@ export type Load = (
   format: string;
   source: string | ArrayBuffer | SharedArrayBuffer | Uint8Array;
 }>;
+
+const tsconfig = process.env.ESBK_TSCONFIG_PATH
+  ? {
+      path: resolve(process.env.ESBK_TSCONFIG_PATH),
+      config: parseTsconfig(process.env.ESBK_TSCONFIG_PATH),
+    }
+  : getTsconfig();
+
+export const fileMatcher = tsconfig && createFilesMatcher(tsconfig);
+
+export const applySourceMap = installSourceMapSupport();

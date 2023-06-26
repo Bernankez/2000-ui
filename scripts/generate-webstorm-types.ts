@@ -1,15 +1,11 @@
-import path, { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
 import { kebabCase } from "lodash-es";
 import type { DefineComponent } from "vue";
 import * as globalComponents from "../packages/components/components";
 import { version } from "../package.json";
+import { createConsole } from "./utils";
 
-const dir = typeof __dirname === "string" ? __dirname : dirname(fileURLToPath(import.meta.url));
-const root = dirname(dir);
-
-const componentsDir = "./packages/components/web-types.json";
+const console = createConsole();
 
 interface Attribute {
   name: string;
@@ -32,9 +28,7 @@ type Constructors =
   | FunctionConstructor
   | DateConstructor;
 
-generateWebstormTypes([componentsDir]);
-
-function generateWebstormTypes(outputs: string[] = []) {
+export function generateWebstormTypes(outputs: string[] = []) {
   if (outputs.length === 0) { return; }
   const vueComponents: any[] = [];
 
@@ -55,7 +49,6 @@ function generateWebstormTypes(outputs: string[] = []) {
 
   Object.keys(globalComponents).forEach((key) => {
     if (key === "default") { return; }
-    // TODO props
     const { props } = (globalComponents as unknown as Record<string, DefineComponent<{}, {}, any>>)[key];
     const slots: any[] = [];
     const attributes: Attribute[] = [];
@@ -97,7 +90,7 @@ function generateWebstormTypes(outputs: string[] = []) {
   });
 
   outputs.forEach((output) => {
-    fs.writeFileSync(path.resolve(root, output), JSON.stringify(scaffold, null, 2), { encoding: "utf-8" });
+    fs.writeFileSync(output, JSON.stringify(scaffold, null, 2), { encoding: "utf-8" });
   });
 }
 

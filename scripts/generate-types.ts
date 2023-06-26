@@ -1,35 +1,23 @@
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import { execa } from "execa";
-import { consola } from "consola";
+import { resolve } from "node:path";
+import { createConsole, root } from "./utils";
+import { generateVolarTypes } from "./generate-volar-types";
+import { generateWebstormTypes } from "./generate-webstorm-types";
 
-const dir = typeof __dirname === "string" ? __dirname : dirname(fileURLToPath(import.meta.url));
-const root = dirname(dir);
-function success(message: string) {
-  consola.success(`build:types: ${message}`);
-}
+const OUTPUT_DIR = "./packages/components";
 
-function error(message: string) {
-  consola.error(`build:types: ${message}`);
-}
+const console = createConsole("build-types");
+
+const volarType = resolve(root, `${OUTPUT_DIR}/volar.d.ts`);
+const webstormType = resolve(root, `${OUTPUT_DIR}/web-types.json`);
 
 async function generate() {
-  await Promise.all([
-    // generate types to packages/components
-    execa("node", ["--experimental-loader", resolve(root, "./scripts/vue-loader.mjs"), "--experimental-loader", "@esbuild-kit/esm-loader", "./scripts/generate-volar-types.ts"], { cwd: root, stdio: "inherit" }),
-    execa("node", ["--experimental-loader", resolve(root, "./scripts/vue-loader.mjs"), "--experimental-loader", "@esbuild-kit/esm-loader", "./scripts/generate-webstorm-types.ts"], { cwd: root, stdio: "inherit" }),
-  ]).then(() => {
-    success(
-      `types generated in \n${resolve(
-        root,
-        "./packages/components",
-      )}`,
-    );
-    return true;
-  }).catch((e) => {
-    error(`types generate failed. ${e?.message}`);
-    return false;
-  });
+  console.start("Start generating types...");
+  try {
+    await Promise.all([generateVolarTypes([volarType]), generateWebstormTypes([webstormType])]);
+    console.success(`Types generated to ${resolve(root, OUTPUT_DIR)}`);
+  } catch (e) {
+    console.error(`Types generate failed. 【Error: ${(e as any)?.message}】`);
+  }
 }
 
 generate();
