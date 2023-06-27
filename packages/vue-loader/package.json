@@ -23,6 +23,11 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
+    "./cb": {
+      "types": "./dist/callback.d.ts",
+      "require": "./dist/callback.cjs",
+      "import": "./dist/callback.mjs"
+    },
     "./suppress-warnings": {
       "require": "./dist/suppress-warnings.cjs"
     }

@@ -11,7 +11,8 @@ export type ModuleFormat =
   | "json"
   | "module"
   | "wasm"
-  | "vue";
+  | "vue"
+  | "callback";
 
 interface Resolved {
   url: string;
