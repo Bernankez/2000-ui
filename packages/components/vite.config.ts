@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import dts from "vite-plugin-dts";
+import Inspect from "vite-plugin-inspect";
 
 const componentsDir = __dirname;
 
@@ -23,6 +24,10 @@ export default defineConfig(() => {
         outputDir: "lib",
         entryRoot: componentsDir,
         cleanVueFileName: true,
+      }),
+      Inspect({
+        build: true,
+        outputDir: ".vite-inspect",
       }),
     ],
     build: {
