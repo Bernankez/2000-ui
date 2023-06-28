@@ -7,8 +7,8 @@ export const root = dirname(dir);
 
 export function createConsole(title?: string) {
   const consola = createConsola({
-    fancy: true,
     formatOptions: {
+      fancy: true,
       columns: 80,
       colors: true,
       compact: true,
