@@ -22,6 +22,30 @@
     "ui",
     "vue"
   ],
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "require": "./lib/index.cjs",
+      "import": "./es/index.mjs"
+    }
+  },
+  "main": "lib/index.cjs",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./es/*",
+        "./es/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "es",
+    "lib",
+    "volar.d.ts",
+    "web-types.json"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build"
