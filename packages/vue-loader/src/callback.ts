@@ -34,6 +34,12 @@ const KNOWN_ASSET_TYPES = [
   "webmanifest",
   "pdf",
   "txt",
+
+  // css
+  "css",
+  "scss",
+  "sass",
+  "less",
 ];
 
 const DEFAULT_ASSETS_RE = new RegExp(
