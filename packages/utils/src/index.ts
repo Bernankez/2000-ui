@@ -1,7 +1,7 @@
 import { camelCase, kebabCase, upperCase } from "lodash-es";
-import type { App, ComponentPublicInstance } from "vue";
+import type { App, DefineComponent } from "vue";
 
-export function withInstall(components: Record<string, ComponentPublicInstance>) {
+export function withInstall(components: Record<string, DefineComponent>) {
   return function install(app: App) {
     Object.keys(components).forEach((name) => {
       const component = components[name];
