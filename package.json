@@ -26,7 +26,7 @@
   "scripts": {
     "postinstall": "simple-git-hooks",
     "cleanup": "rimraf --glob packages/*/{dist,es,lib,.vite-inspect} **/volar.d.ts **/web-types.json",
-    "dev": "vite",
+    "dev": "pnpm -F \"./dev\" dev",
     "build": "pnpm cleanup && pnpm -r -F \"./packages/{utils,components}\" build && pnpm build:types",
     "build:types": "pnpm -F \"./packages/vue-loader\" build && node --require @2000-ui/vue-loader/suppress-warnings --experimental-loader @2000-ui/vue-loader/cb --experimental-loader @2000-ui/vue-loader --experimental-loader @esbuild-kit/esm-loader ./scripts/generate-types.ts",
     "release": "bumpp -r && pnpm -r publish",
