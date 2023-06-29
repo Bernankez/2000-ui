@@ -17,6 +17,7 @@ async function appendCSS() {
       // component
       componentDirs.forEach((file) => {
         if (file.isDirectory()) {
+          const outputName = file.name === "styles" ? "index.css" : "style.css";
           const componentDir = resolve(dir, file.name);
           let appendFiles = "";
 
@@ -30,7 +31,7 @@ async function appendCSS() {
             }
           });
           // output to style.css
-          appendFileSync(resolve(componentDir, "style.css"), appendFiles);
+          appendFileSync(resolve(componentDir, outputName), appendFiles);
         }
       });
     }

@@ -27,7 +27,8 @@
       "types": "./es/index.d.ts",
       "require": "./lib/index.cjs",
       "import": "./es/index.mjs"
-    }
+    },
+    "./style": "./es/styles/index.css"
   },
   "main": "lib/index.cjs",
   "module": "es/index.mjs",
