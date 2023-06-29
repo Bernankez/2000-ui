@@ -50,9 +50,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && pnpm build:esm_cjs && pnpm build:umd",
+    "build": "pnpm typecheck && pnpm build:esm_cjs && pnpm build:umd",
     "build:esm_cjs": "vite build",
-    "build:umd": "vite build --config vite.umd.ts"
+    "build:umd": "vite build --config vite.umd.ts",
+    "typecheck": "vue-tsc"
   },
   "peerDependencies": {
     "vue": ">=3.2.0"
