@@ -30,7 +30,7 @@
     "build": "tsx ./scripts/build/index.ts",
     "build:components": "pnpm -r -F \"./packages/{utils,components}\" build",
     "build:types": "pnpm -F \"./packages/vue-loader\" build && node --require @2000-ui/vue-loader/suppress-warnings --experimental-loader @2000-ui/vue-loader/cb --experimental-loader @2000-ui/vue-loader --experimental-loader @esbuild-kit/esm-loader ./scripts/build/types/generate-types.ts",
-    "build:styles": "tsx ./scripts/build/styles/index.ts",
+    "build:styles": "pnpm -F \"./packages/components\" build:styles && tsx ./scripts/build/styles/index.ts",
     "release": "bumpp -r && pnpm -r publish",
     "test": "vitest run",
     "test:watch": "vitest",

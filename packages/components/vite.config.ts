@@ -67,7 +67,7 @@ export default defineConfig(() => {
         entry: resolve(componentsDir, "index.ts"),
       },
       rollupOptions: {
-        external: ["vue"],
+        external: ["vue", "@2000-ui/utils"],
         output: [
           {
             format: "es",
@@ -88,14 +88,6 @@ export default defineConfig(() => {
             preserveModules: true,
             preserveModulesRoot: componentsDir,
             dir: "lib",
-          },
-          {
-            format: "umd",
-            globals: {
-              vue: "Vue",
-            },
-            name: "2000-ui",
-            dir: "dist",
           },
         ],
       },

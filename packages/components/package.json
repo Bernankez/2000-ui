@@ -41,6 +41,7 @@
     }
   },
   "files": [
+    "dist",
     "es",
     "lib",
     "volar.d.ts",
@@ -48,7 +49,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build"
+    "build": "vue-tsc && pnpm build:esm_cjs && pnpm build:umd",
+    "build:esm_cjs": "vite build",
+    "build:umd": "vite build --config vite.umd.ts",
+    "build:styles": "vite build --config vite.style.ts"
   },
   "peerDependencies": {
     "vue": ">=3.2.0"
