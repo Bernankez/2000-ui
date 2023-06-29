@@ -1,9 +1,9 @@
 import fs from "fs-extra";
 import { kebabCase } from "lodash-es";
 import type { DefineComponent } from "vue";
-import * as globalComponents from "../packages/components/components";
-import { version } from "../package.json";
-import { createConsole } from "./utils";
+import * as globalComponents from "../../../packages/components/components";
+import { version } from "../../../package.json";
+import { createConsole } from "../../utils";
 
 const console = createConsole();
 

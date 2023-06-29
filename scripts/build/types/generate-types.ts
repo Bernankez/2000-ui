@@ -1,9 +1,10 @@
 import { resolve } from "node:path";
-import { createConsole, root } from "./utils";
+import { createConsole, getDirname } from "../../utils";
 import { generateVolarTypes } from "./generate-volar-types";
 import { generateWebstormTypes } from "./generate-webstorm-types";
 
 const OUTPUT_DIR = "./packages/components";
+const root = resolve(getDirname(import.meta.url), "../../..");
 
 const console = createConsole("build-types");
 

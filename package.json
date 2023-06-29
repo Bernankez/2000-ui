@@ -27,8 +27,10 @@
     "postinstall": "simple-git-hooks",
     "cleanup": "rimraf --glob packages/*/{dist,es,lib,.vite-inspect} **/volar.d.ts **/web-types.json",
     "dev": "pnpm -F \"./dev\" dev",
-    "build": "pnpm cleanup && pnpm -r -F \"./packages/{utils,components}\" build && pnpm build:types",
-    "build:types": "pnpm -F \"./packages/vue-loader\" build && node --require @2000-ui/vue-loader/suppress-warnings --experimental-loader @2000-ui/vue-loader/cb --experimental-loader @2000-ui/vue-loader --experimental-loader @esbuild-kit/esm-loader ./scripts/generate-types.ts",
+    "build": "tsx ./scripts/build/index.ts",
+    "build:components": "pnpm -r -F \"./packages/{utils,components}\" build",
+    "build:types": "pnpm -F \"./packages/vue-loader\" build && node --require @2000-ui/vue-loader/suppress-warnings --experimental-loader @2000-ui/vue-loader/cb --experimental-loader @2000-ui/vue-loader --experimental-loader @esbuild-kit/esm-loader ./scripts/build/types/generate-types.ts",
+    "build:styles": "tsx ./scripts/build/styles/index.ts",
     "release": "bumpp -r && pnpm -r publish",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -38,7 +40,8 @@
     "lint:fix": "eslint . --fix",
     "stylelint": "stylelint **/*.{css,vue}",
     "stylelint:fix": "stylelint **/*.{css,vue} --fix",
-    "fix": "pnpm lint:fix && pnpm stylelint:fix"
+    "fix": "pnpm lint:fix && pnpm stylelint:fix",
+    "inspect": "pnpm vite serve \"./packages/components/.vite-inspect\""
   },
   "devDependencies": {
     "@2000-ui/vue-loader": "workspace:*",
@@ -48,6 +51,7 @@
     "@types/fs-extra": "^11.0.1",
     "@types/lodash-es": "^4.17.7",
     "bumpp": "^9.1.1",
+    "chalk": "^5.2.0",
     "consola": "^3.1.0",
     "eslint-config": "^0.3.0",
     "execa": "^7.1.1",

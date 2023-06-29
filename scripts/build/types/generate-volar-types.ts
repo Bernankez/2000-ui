@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import * as globalComponents from "../packages/components/components";
+import * as globalComponents from "../../../packages/components/components";
 
 export async function generateVolarTypes(outputs: string[] = []) {
   if (outputs.length === 0) { return; }
