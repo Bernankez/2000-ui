@@ -5,6 +5,7 @@ import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import dts from "vite-plugin-dts";
 import Inspect from "vite-plugin-inspect";
+import UnoCSS from "unocss/vite";
 
 const INTERNAL_SOURCE = "/* vite internal call, ignore */";
 
@@ -35,6 +36,9 @@ export default defineConfig(() => {
     plugins: [
       Vue(),
       VueJsx(),
+      UnoCSS({
+        mode: "vue-scoped",
+      }),
       dts({
         // 声明文件输出目录
         outputDir: "es",

@@ -2,6 +2,7 @@ import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
+import UnoCSS from "unocss/vite";
 
 const componentsDir = __dirname;
 
@@ -10,10 +11,12 @@ export default defineConfig(() => {
     plugins: [
       Vue(),
       VueJsx(),
+      UnoCSS({
+        mode: "vue-scoped",
+      }),
     ],
     build: {
       minify: false,
-      cssCodeSplit: true,
       lib: {
         name: "2000-ui",
         entry: resolve(componentsDir, "index.umd.ts"),
