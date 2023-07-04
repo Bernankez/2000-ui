@@ -9,10 +9,11 @@
     "email": "bernankeic@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/Bernankez/2000-ui#readme",
+  "homepage": "https://github.com/Bernankez/2000-ui/tree/master/packages/utils#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bernankez/2000-ui.git"
+    "url": "git+https://github.com/Bernankez/2000-ui.git",
+    "directory": "packages/utils"
   },
   "bugs": "https://github.com/Bernankez/2000-ui/issues",
   "keywords": [],
