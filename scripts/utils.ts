@@ -2,6 +2,10 @@ import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createConsola } from "consola";
 
+/**
+ * __dirname
+ * @param url import.meta.url
+ */
 export function getDirname(url: string) {
   const dir = typeof __dirname === "string" ? __dirname : dirname(fileURLToPath(url));
   return dir;
