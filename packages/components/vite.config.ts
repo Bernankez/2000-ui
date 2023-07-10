@@ -41,14 +41,14 @@ export default defineConfig(() => {
       }),
       dts({
         // 声明文件输出目录
-        outputDir: "es",
+        outDir: "es",
         // 入口文件的跟路径
         entryRoot: componentsDir,
         // exclude auto inferred from tsconfig
         cleanVueFileName: true,
       }),
       dts({
-        outputDir: "lib",
+        outDir: "lib",
         entryRoot: componentsDir,
         cleanVueFileName: true,
       }),
