@@ -8,7 +8,7 @@
     "baseUrl": "./",
     "paths": {
       "@2000-ui/utils": [
-        "packages/utils/src/*"
+        "packages/utils/src/index"
       ]
     },
 
