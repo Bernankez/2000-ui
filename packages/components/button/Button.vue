@@ -1,5 +1,5 @@
 <template>
-  <button>
+  <button class="z-bg-gray">
     <slot>{{ title }}</slot>
   </button>
 </template>

@@ -27,7 +27,7 @@
     "prepare": "simple-git-hooks",
     "prepublishOnly": "tsx ./scripts/pre-publish.ts",
     "cleanup": "rimraf --glob packages/*/{dist,es,lib,.vite-inspect} **/volar.d.ts **/web-types.json",
-    "dev": "pnpm -F \"./dev\" dev",
+    "dev": "pnpm -F \"./packages/components\" dev",
     "build": "tsx ./scripts/build/index.ts",
     "build:components": "pnpm -r -F \"./packages/{utils,components}\" build",
     "build:types": "pnpm -F \"./packages/vue-loader\" build && cross-env ESBK_TSCONFIG_PATH=tsconfig.build.json node --require @2000-ui/vue-loader/suppress-warnings --experimental-loader @2000-ui/vue-loader/cb --experimental-loader @2000-ui/vue-loader --experimental-loader @esbuild-kit/esm-loader ./scripts/build/types/generate-types.ts",
