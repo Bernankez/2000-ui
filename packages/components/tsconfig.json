@@ -1,14 +1,9 @@
 {
   "extends": "../../tsconfig.json",
+  "include": [
+    "*/**/*"
+  ],
   "exclude": [
-    "es",
-    "lib",
-    "dist",
-    "**/test",
-    "index.*.ts",
-    "vite.*.ts",
-    "uno.config.ts",
-    "volar.d.ts",
-    "web-types.json"
+    "**/test"
   ]
 }
