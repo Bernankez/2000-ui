@@ -11,5 +11,5 @@
     "allowSyntheticDefaultImports": true,
     "noEmit": true
   },
-  "include": ["vite.config.ts", "scripts/**/*.ts"]
+  "include": ["**/*/vite.*.ts", "scripts/**/*.ts"]
 }

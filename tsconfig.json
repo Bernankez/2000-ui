@@ -5,6 +5,12 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@2000-ui/utils": [
+        "packages/utils/src/*"
+      ]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -15,10 +21,7 @@
     "jsx": "preserve",
 
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "strict": true
   },
   "exclude": [
     "**/node_modules/**",
