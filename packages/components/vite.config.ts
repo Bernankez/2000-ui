@@ -5,6 +5,7 @@ import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import dts from "vite-plugin-dts";
 import Inspect from "vite-plugin-inspect";
+import VueDevtools from "vite-plugin-vue-devtools";
 import UnoCSS from "unocss/vite";
 
 const INTERNAL_SOURCE = "/* vite internal call, ignore */";
@@ -56,6 +57,7 @@ export default defineConfig(() => {
         build: true,
         outputDir: ".vite-inspect",
       }),
+      VueDevtools(),
       {
         name: "vite:cleanup",
         buildStart() {

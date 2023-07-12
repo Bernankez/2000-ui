@@ -65,7 +65,8 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "unocss": "^0.53.4",
-    "vite-plugin-dts": "^3.2.0"
+    "vite-plugin-dts": "^3.2.0",
+    "vite-plugin-vue-devtools": "^0.5.1"
   },
   "publishConfig": {
     "access": "public"
