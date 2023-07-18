@@ -1,4 +1,4 @@
 {
-  "extends": ["@bernankez"],
+  "extends": ["@bernankez", "@bernankez/unocss"],
   "ignorePatterns": ["**/es/*", "**/lib/*"]
 }

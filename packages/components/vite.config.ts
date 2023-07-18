@@ -1,4 +1,5 @@
 import { resolve } from "node:path";
+import { writeFileSync } from "fs";
 import { defineConfig } from "vite";
 import type { PreRenderedAsset } from "rollup";
 import Vue from "@vitejs/plugin-vue";
@@ -7,6 +8,7 @@ import dts from "vite-plugin-dts";
 import Inspect from "vite-plugin-inspect";
 import VueDevtools from "vite-plugin-vue-devtools";
 import UnoCSS from "unocss/vite";
+import { preflights } from "./_preset";
 
 const INTERNAL_SOURCE = "/* vite internal call, ignore */";
 
@@ -58,6 +60,13 @@ export default defineConfig(() => {
         outputDir: ".vite-inspect",
       }),
       VueDevtools(),
+      {
+        name: "vite:css-variables",
+        buildStart() {
+          const code = preflights;
+          writeFileSync(resolve(__dirname, "./styles/variable.css"), code);
+        },
+      },
       {
         name: "vite:cleanup",
         buildStart() {

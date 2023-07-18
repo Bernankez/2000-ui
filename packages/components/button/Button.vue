@@ -1,5 +1,5 @@
 <template>
-  <button class="z-bg-gray">
+  <button class="z-bg-base-100 z-text-base-content active:z-bg-base-200">
     <slot>{{ title }}</slot>
   </button>
 </template>

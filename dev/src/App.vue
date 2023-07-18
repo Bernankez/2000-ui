@@ -8,11 +8,11 @@
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
-  <Button title="ttt" />
+  <ZButton title="ttt" />
 </template>
 
 <script setup lang="ts">
-import { Button } from "2000-ui";
+import { ZButton } from "2000-ui";
 import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
