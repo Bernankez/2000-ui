@@ -12,9 +12,14 @@
     <ZButton disabled type="success" tag="a" icon="error">
       Hello world 你不太好
     </ZButton>
+    <ZButton type="error" icon="error" />
+    <h1 class="z-font-semibold z-text-9">
+      Input
+    </h1>
+    <ZInput placeholder="hello" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ZButton } from "./index";
+import { ZButton, ZInput } from "./index";
 </script>
