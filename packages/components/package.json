@@ -28,7 +28,8 @@
       "require": "./lib/index.cjs",
       "import": "./es/index.mjs"
     },
-    "./style": "./es/styles/index.css"
+    "./style.css": "./es/styles/index.css",
+    "./*": "./*"
   },
   "main": "lib/index.cjs",
   "module": "es/index.mjs",
@@ -48,6 +49,7 @@
     "volar.d.ts",
     "web-types.json"
   ],
+  "web-types": "./web-types.json",
   "scripts": {
     "dev": "vite",
     "build": "pnpm typecheck && pnpm build:esm_cjs && pnpm build:umd",
@@ -62,6 +64,7 @@
     "@2000-ui/utils": "workspace:*"
   },
   "devDependencies": {
+    "@iconify-json/ic": "^1.1.13",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "colord": "^2.9.3",
