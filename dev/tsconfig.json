@@ -26,12 +26,9 @@
       ],
       "~/*": [
         "./*"
-      ],
-      "2000-ui": [
-        "../packages/components/index"
       ]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "2000-ui/volar.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

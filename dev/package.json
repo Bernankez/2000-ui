@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "2000-ui": "workspace:*",
     "vue": "^3.2.47"
   },
   "devDependencies": {

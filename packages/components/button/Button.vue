@@ -1,17 +1,95 @@
 <template>
-  <button class="z-bg-base-100 z-text-base-content active:z-bg-base-200">
-    <slot>{{ title }}</slot>
-  </button>
+  <component :is="tag" role="button" :disabled="disabled" class="z-rounded-[var(--rounded-btn)] active:z-scale-[var(--btn-focus-scale)] z-btn z-transition-duration-[var(--animation-btn)] z-p-x-3 z-leading-[1] z-p-y-2 z-shadow-[var(--shadow-btn)] z-cursor-pointer z-select-none" :class="[typeClass, disabled ? 'z-btn-disabled' : '', block ? 'z-block' : 'z-inline-block']" @click="click">
+    <slot name="icon">
+      <div class="z-inline-block" :class="[iconClass]"></div>
+    </slot>
+    <slot></slot>
+  </component>
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-  title?: string;
+import { computed } from "vue";
+
+const props = withDefaults(defineProps<{
+  type?: "default" | "primary" | "secondary" | "info" | "success" | "error" | "warning" ;
+  disabled?: boolean;
+  icon?: "info" | "success" | "error" | "warning" ;
+  tag?: string;
+  block?: boolean;
 }>(), {
-  title: "title",
+  type: "default",
+  default: false,
+  tag: "button",
+  block: false,
 });
 
-defineEmits<{
-  click: [e:PointerEvent];
+const emit = defineEmits<{
+  click: [e:MouseEvent];
 }>();
+
+const iconClass = computed(() => {
+  switch (props.icon) {
+    case "success":
+      return "i-ic:baseline-check";
+    case "error":
+      return "i-ic:baseline-clear";
+    case "warning":
+      return "i-ic:baseline-warning-amber";
+    case "info":
+      return "i-ic:outline-info";
+    default:
+      return "";
+  }
+});
+
+const typeClass = computed(() => {
+  if (props.type === "default") {
+    return "z-btn-base";
+  }
+  return `z-btn-${props.type}`;
+});
+
+function click(e: MouseEvent) {
+  if (!props.disabled) {
+    emit("click", e);
+  }
+}
 </script>
+
+<style scoped>
+.z-btn {
+  text-transform: var(--btn-text-case);
+}
+
+.z-btn-disabled {
+  @apply z-bg-opacity-50! z-text-opacity-50! active:z-scale-100! z-cursor-not-allowed!;
+}
+
+.z-btn-base {
+  @apply z-bg-base-100 hover:z-bg-base-200 z-text-base-content;
+}
+
+.z-btn-primary {
+  @apply z-bg-primary hover:z-bg-primary-focus z-text-primary-content;
+}
+
+.z-btn-secondary {
+  @apply z-bg-secondary hover:z-bg-secondary-focus z-text-secondary-content;
+}
+
+.z-btn-info {
+  @apply z-bg-info hover:z-bg-info-focus z-text-info-content;
+}
+
+.z-btn-success {
+  @apply z-bg-success hover:z-bg-success-focus z-text-success-content;
+}
+
+.z-btn-warning {
+  @apply z-bg-warning hover:z-bg-warning-focus z-text-warning-content;
+}
+
+.z-btn-error {
+  @apply z-bg-error hover:z-bg-error-focus z-text-error-content;
+}
+</style>

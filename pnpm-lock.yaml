@@ -101,6 +101,9 @@ importers:
 
   dev:
     dependencies:
+      2000-ui:
+        specifier: workspace:^
+        version: link:../packages/components
       vue:
         specifier: ^3.2.47
         version: 3.3.4
@@ -127,6 +130,9 @@ importers:
         specifier: '>=3.2.0'
         version: 3.3.4
     devDependencies:
+      '@iconify-json/ic':
+        specifier: ^1.1.13
+        version: 1.1.13
       '@vitejs/plugin-vue':
         specifier: ^4.2.3
         version: 4.2.3(vite@4.4.2)(vue@3.3.4)
@@ -141,7 +147,7 @@ importers:
         version: 3.2.0(@types/node@18.16.19)(typescript@5.1.6)
       vite-plugin-vue-devtools:
         specifier: ^0.5.1
-        version: 0.5.1(@types/node@18.16.19)(pug@3.0.2)(vite@4.4.2)(vue@3.3.4)
+        version: 0.5.1(@types/node@18.16.19)(pug@3.0.2)(rollup@3.25.3)(vite@4.4.2)(vue@3.3.4)
 
   packages/utils: {}
 
@@ -1255,6 +1261,12 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/ic@1.1.13:
+    resolution: {integrity: sha512-5i5zal/VRwTrs99iMTnG1Zu97bgX9Mkiu9TzR1U1rHBylUnBW+HkOweoQVEPgQITGG024/lNbZxU+3Aa2xuDww==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types@2.0.0:
@@ -9343,14 +9355,14 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-inspect@0.7.32(vite@4.4.2):
+  /vite-plugin-inspect@0.7.32(rollup@3.25.3)(vite@4.4.2):
     resolution: {integrity: sha512-TqRLHwOM3FTJPOGCCHJmub4SVVogSjZ9LSDo1Q6WeN2Zvc7HB7tr7cqYlAyStXCI90KvVnb1BRwI22+HXlghXQ==}
     engines: {node: '>=14'}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
     dependencies:
       '@antfu/utils': 0.7.4
-      '@rollup/pluginutils': 5.0.2(rollup@3.26.2)
+      '@rollup/pluginutils': 5.0.2(rollup@3.25.3)
       debug: 4.3.4
       fs-extra: 11.1.1
       open: 9.1.0
@@ -9362,7 +9374,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-vue-devtools@0.5.1(@types/node@18.16.19)(pug@3.0.2)(vite@4.4.2)(vue@3.3.4):
+  /vite-plugin-vue-devtools@0.5.1(@types/node@18.16.19)(pug@3.0.2)(rollup@3.25.3)(vite@4.4.2)(vue@3.3.4):
     resolution: {integrity: sha512-z6wzaRxvmQVF1A8iNPIrCrpgJWbFC8bQpCG18yTSHFzRYTkFrqTZ37JjrKysPP0EvLitI1PYru0Odqt2ICfCbQ==}
     engines: {node: '>=v14'}
     peerDependencies:
@@ -9382,7 +9394,7 @@ packages:
       vanilla-jsoneditor: 0.17.8
       vite: 4.4.2(@types/node@18.16.19)
       vite-hot-client: 0.2.1(vite@4.4.2)
-      vite-plugin-inspect: 0.7.32(vite@4.4.2)
+      vite-plugin-inspect: 0.7.32(rollup@3.25.3)(vite@4.4.2)
       vite-plugin-vue-inspector: 3.4.2(vite@4.4.2)
       vue-router: 4.2.4(vue@3.3.4)
       vuedraggable: 4.1.0(vue@3.3.4)
