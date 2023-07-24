@@ -6,7 +6,7 @@
     <ZButton type="default" icon="info">
       Hello world 你好
     </ZButton>
-    <ZButton type="primary" tag="a" icon="success">
+    <ZButton type="neutral" tag="a" icon="success">
       Hello world 你也好
     </ZButton>
     <ZButton disabled type="success" tag="a" icon="error">

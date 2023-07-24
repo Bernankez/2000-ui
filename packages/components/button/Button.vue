@@ -11,7 +11,7 @@
 import { computed } from "vue";
 
 const props = withDefaults(defineProps<{
-  type?: "default" | "primary" | "secondary" | "info" | "success" | "error" | "warning" ;
+  type?: "default" | "primary" | "secondary" | "accent" | "neutral" | "info" | "success" | "error" | "warning" ;
   disabled?: boolean;
   icon?: "info" | "success" | "error" | "warning" ;
   tag?: string;
@@ -75,6 +75,14 @@ function click(e: MouseEvent) {
 
 .z-btn-secondary {
   @apply z-bg-secondary hover:z-bg-secondary-focus z-text-secondary-content;
+}
+
+.z-btn-accent {
+  @apply z-bg-accent hover:z-bg-accent-focus z-text-accent-content;
+}
+
+.z-btn-neutral {
+  @apply z-bg-neutral hover:z-bg-neutral-focus z-text-neutral-content;
 }
 
 .z-btn-info {
