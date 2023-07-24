@@ -23,7 +23,7 @@ ${props.join("\n")}
 
 export const preset2000 = (): Preset => {
   return {
-    name: "preset2000",
+    name: "preset-2000",
     theme: {
       colors: createThemeColors(),
     },
