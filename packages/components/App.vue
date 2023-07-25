@@ -16,7 +16,9 @@
     <h1 class="z-font-semibold z-text-9">
       Input
     </h1>
-    <ZInput show-password-on="click" show-count type="password" placeholder="hello" :minlength="2" :maxlength="104" @change="onInput" />
+    <div class="z-flex">
+      <ZInput show-password-on="click" show-count type="password" placeholder="hello" :minlength="2" :maxlength="999" @change="onInput" />
+    </div>
   </div>
 </template>
 

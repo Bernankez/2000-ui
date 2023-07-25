@@ -1,20 +1,22 @@
 <template>
-  <div class="z-rounded-[var(--rounded-btn)] z-inline-flex z-flex-gap-2 z-b-solid z-b-2 z-b-primary z-bg-base-50 z-text-base-content z-cursor-text z-shadow-primary focus-within:z-shadow-sm z-p-x-2 z-box-border" :class="[disabled ? 'z-cursor-not-allowed' : '']">
-    <input ref="inputRef" v-model="mergedState" class="focus:z-outline-none z-bg-inherit" :disabled="disabled" :minlength="minlength" :class="[disabled ? 'z-cursor-not-allowed' : '']" :maxlength="maxlength" :placeholder="placeholder?.toString()" :type="showPassword ? 'text' : type" @change="onChange" />
-    <div class="z-flex-gap-2 z-flex">
-      <template v-if="showCount">
-        <div class="z-flex z-select-none z-text-4 z-text-base-400 z-items-center" @click="focusInput">
-          <slot name="count" :value="valueLength">
-            {{ `${valueLength}/${maxlength}` }}
-          </slot>
-        </div>
-      </template>
-      <template v-if="showPasswordOn">
-        <div class="z-flex z-items-center z-cursor-pointer" @mousedown="toggle('mousedown')" @mouseup="toggle('mouseup')" @click="toggle('click')">
-          <div v-if="showPassword" class="z-items-center z-inline-block i-ic:outline-visibility" draggable="false"></div>
-          <div v-else class="z-inline-block z-items-center i-ic:outline-visibility-off" draggable="false"></div>
-        </div>
-      </template>
+  <div class="z-max-w-full">
+    <div class="z-rounded-[var(--rounded-btn)] z-inline-flex z-flex-gap-2 z-b-solid z-b-2 z-b-primary z-bg-base-50 z-text-base-content z-cursor-text z-shadow-primary focus-within:z-shadow-sm z-p-x-2 z-box-border z-w-full" :class="[disabled ? 'z-cursor-not-allowed' : '']">
+      <input ref="inputRef" v-model="mergedState" :autofocus="autofocus" class="z-w-full focus:z-outline-none z-bg-inherit" :disabled="disabled" :minlength="minlength" :class="[disabled ? 'z-cursor-not-allowed' : '']" :maxlength="maxlength" :placeholder="placeholder?.toString()" :type="showPassword ? 'text' : type" @change="onChange" />
+      <div class="z-flex-gap-2 z-flex">
+        <template v-if="showCount">
+          <div class="z-flex z-select-none z-text-4 z-text-base-400 z-items-center" @click="focusInput">
+            <slot name="count" :value="valueLength">
+              {{ `${valueLength}/${maxlength}` }}
+            </slot>
+          </div>
+        </template>
+        <template v-if="showPasswordOn">
+          <div class="z-flex z-items-center z-cursor-pointer" @mousedown="toggle('mousedown')" @mouseup="toggle('mouseup')" @click="toggle('click')">
+            <div v-if="showPassword" class="z-items-center z-inline-block i-ic:outline-visibility" draggable="false"></div>
+            <div v-else class="z-inline-block z-items-center i-ic:outline-visibility-off" draggable="false"></div>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +34,7 @@ const props = withDefaults(defineProps<{
   disabled?: boolean;
   minlength?: number;
   maxlength?: number;
+  autofocus?: boolean;
   showCount?: boolean;
   showPasswordOn?: "mousedown" | "click";
 }>(), {
