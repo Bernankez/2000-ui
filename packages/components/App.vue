@@ -16,10 +16,14 @@
     <h1 class="z-font-semibold z-text-9">
       Input
     </h1>
-    <ZInput placeholder="hello" />
+    <ZInput show-count placeholder="hello" :minlength="2" :maxlength="4" @change="onInput" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ZButton, ZInput } from "./index";
+
+function onInput(v: string) {
+  console.log(v);
+}
 </script>
