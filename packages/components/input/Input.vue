@@ -11,8 +11,8 @@
       </template>
       <template v-if="showPasswordOn">
         <div class="z-flex z-items-center z-cursor-pointer" @mousedown="toggle('mousedown')" @mouseup="toggle('mouseup')" @click="toggle('click')">
-          <div v-if="showPassword" class="z-items-center z-inline-block i-ic:outline-visibility"></div>
-          <div v-else class="z-inline-block z-items-center i-ic:outline-visibility-off"></div>
+          <div v-if="showPassword" class="z-items-center z-inline-block i-ic:outline-visibility" draggable="false"></div>
+          <div v-else class="z-inline-block z-items-center i-ic:outline-visibility-off" draggable="false"></div>
         </div>
       </template>
     </div>
