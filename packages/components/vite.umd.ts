@@ -15,6 +15,11 @@ export default defineConfig(() => {
         mode: "vue-scoped",
       }),
     ],
+    resolve: {
+      alias: {
+        "@": resolve(__dirname, "./"),
+      },
+    },
     build: {
       minify: false,
       lib: {
