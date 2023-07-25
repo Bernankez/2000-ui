@@ -3,6 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@2000-ui/utils": [
+        "../utils/src/index"
+      ],
       "@/*": ["./*"]
     }
   },
