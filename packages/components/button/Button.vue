@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" role="button" :disabled="disabled" class="z-rounded-[var(--rounded-btn)] active:z-scale-[var(--btn-focus-scale)] z-btn z-transition-duration-[var(--animation-btn)] z-p-x-3 z-leading-[1] z-p-y-2 z-shadow-[var(--shadow-btn)] z-cursor-pointer z-select-none" :class="[typeClass, disabled ? 'z-btn-disabled' : '', block ? 'z-block' : 'z-inline-block']" @click="click">
+  <component :is="tag" role="button" :disabled="disabled" class="z-rounded-[var(--rounded-btn)] z-leading-[1] z-cursor-pointer z-select-none active:z-scale-[var(--btn-focus-scale)] z-btn z-transition-duration-[var(--animation-btn)] z-p-x-3 z-p-y-2 z-shadow-[var(--shadow-btn)]" :class="[typeClass, disabled ? 'z-btn-disabled' : '', block ? 'z-block' : 'z-inline-block']" @click="click">
     <slot name="icon">
       <div class="z-inline-block" :class="[iconClass]"></div>
     </slot>
@@ -9,14 +9,9 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import type { ButtonProps } from "./types";
 
-const props = withDefaults(defineProps<{
-  type?: "default" | "primary" | "secondary" | "accent" | "neutral" | "info" | "success" | "error" | "warning" ;
-  disabled?: boolean;
-  icon?: "info" | "success" | "error" | "warning" ;
-  tag?: string;
-  block?: boolean;
-}>(), {
+const props = withDefaults(defineProps<ButtonProps>(), {
   type: "default",
   default: false,
   tag: "button",
