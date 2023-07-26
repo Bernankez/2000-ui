@@ -3,14 +3,14 @@
   <div class="z-max-w-full">
     <!-- whole input wrapper -->
     <div class="z-rounded-[var(--rounded-btn)] z-inline-flex z-flex-gap-2 z-b-solid z-b-2 z-b-primary z-bg-base-50 z-text-base-content z-cursor-text z-shadow-primary focus-within:z-shadow-sm z-p-x-2 z-box-border z-w-full" :class="[disabled ? 'z-cursor-not-allowed' : '']">
-      <div v-if="type === 'input' && autoAdjust" class="z-relative z-overflow-hidden">
+      <div v-if="type === 'input' && autoAdjust" :style="style" class="z-relative z-overflow-hidden">
         <input ref="inputRef" v-model="mergedState" :autofocus="autofocus" class="z-w-full focus:z-outline-none z-bg-inherit z-absolute z-left-0 z-top-0" :disabled="disabled" :minlength="minlength" :class="[disabled ? 'z-cursor-not-allowed' : '']" :maxlength="maxlength" :placeholder="placeholder?.toString()" :type="showPassword ? 'text' : type" @change="onChange" />
-        <div class="z-invisible z-pointer-events-none">
-          {{ mergedState }}
+        <div class="z-invisible z-pointer-events-none z-vertical-base z-whitespace-pre">
+          {{ mergedState || " " }}
         </div>
       </div>
       <input v-else-if="type !== 'textarea'" ref="inputRef" v-model="mergedState" :autofocus="autofocus" class="z-w-full focus:z-outline-none z-bg-inherit" :disabled="disabled" :minlength="minlength" :class="[disabled ? 'z-cursor-not-allowed' : '']" :maxlength="maxlength" :placeholder="placeholder?.toString()" :type="showPassword ? 'text' : type" @change="onChange" />
-      TODO textarea autoAdjust
+      <!-- TODO textarea autoAdjust -->
       <!-- suffix wrapper -->
       <div class="z-flex-gap-2 z-flex">
         <template v-if="showCount">
@@ -34,12 +34,11 @@
 </template>
 
 <script setup lang="ts" generic="T extends string | number">
-import type { Ref } from "vue";
+import type { Ref, StyleValue } from "vue";
 import { computed, ref } from "vue";
 import { on } from "@2000-ui/utils";
 import { useMergedState } from "@/_composables";
 
-// TODO style class
 const props = withDefaults(defineProps<{
   type?: "input" | "password" | "textarea";
   value?: T;
@@ -48,9 +47,10 @@ const props = withDefaults(defineProps<{
   minlength?: number;
   maxlength?: number;
   autofocus?: boolean;
-  autoAdjust?: boolean;
+  autoAdjust?: boolean | { minRows?: number; maxRows?: number };
   showCount?: boolean;
   showPasswordOn?: "mousedown" | "click";
+  style?: StyleValue;
 }>(), {
   type: "input",
 });
