@@ -21,6 +21,7 @@
       <ZInput show-password-on="click" style="min-width: 40px;" show-count type="password" auto-adjust placeholder="hello" :minlength="2" :maxlength="999" @change="onInput" />
       <ZInput style="min-width: 40px;" show-count type="input" placeholder="hello" :minlength="2" :maxlength="999" @change="onInput" />
       <ZInput type="textarea" show-count placeholder="hello" :minlength="2" :maxlength="999" @change="onInput" />
+      <ZInput type="textarea" show-count :auto-adjust="{ minRows: 5, maxRows: 10 }" placeholder="hello" :minlength="2" :maxlength="999" @change="onInput" />
     </div>
   </div>
 </template>
