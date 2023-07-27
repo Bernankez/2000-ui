@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import type { Load, Resolve } from "./utils";
+import { type Load, type Resolve, normalizePath } from "./utils";
 import { compileTsCode, compileVueCode } from "./compile";
 
 export const resolve: Resolve = async (specifier, context, defaultResolve, recursiveCall) => {
@@ -19,7 +19,8 @@ export const load: Load = async (url, context, defaultLoad) => {
   if (context.format === "vue") {
     const source = fs.readFileSync(fileURLToPath(url), "utf-8");
     // remove file:// flag
-    let { content: code, ext } = compileVueCode(source, url.replace("file://", ""));
+    const path = normalizePath(url).replace("file://", "");
+    let { content: code, ext } = compileVueCode(source, path);
 
     if (ext === "ts") {
       code = await compileTsCode(code, url);
