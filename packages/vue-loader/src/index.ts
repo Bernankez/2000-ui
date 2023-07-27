@@ -18,7 +18,7 @@ export const load: Load = async (url, context, defaultLoad) => {
   const content = await defaultLoad(url, context, defaultLoad);
   if (context.format === "vue") {
     const source = fs.readFileSync(fileURLToPath(url), "utf-8");
-    let { content: code, ext } = compileVueCode(source);
+    let { content: code, ext } = compileVueCode(source, url);
 
     if (ext === "ts") {
       code = await compileTsCode(code, url);

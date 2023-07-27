@@ -74,15 +74,15 @@ export function setCompileRoot(root: string) {
   }
 }
 
-function parseCode(code: string) {
+function parseCode(code: string, url: string) {
   const { parse: parseVueCode } = requireCompiler();
   let descriptor: any;
 
   if (isVue3()) {
-    descriptor = parseVueCode(code).descriptor;
+    descriptor = parseVueCode(code, { filename: url }).descriptor;
   } else {
     // #87 support vue 2.7
-    descriptor = (parseVueCode as any)({ source: code });
+    descriptor = (parseVueCode as any)({ source: code, filename: url });
   }
 
   return descriptor as SFCDescriptor;
@@ -314,9 +314,9 @@ function preprocessVueCode(code: string, setupScript: SFCScriptBlock | null) {
   return source.toString();
 }
 
-export function compileVueCode(code: string) {
+export function compileVueCode(code: string, url: string) {
   const { compileScript, rewriteDefault } = requireCompiler();
-  const descriptor = parseCode(code);
+  const descriptor = parseCode(code, url);
   const { script, scriptSetup } = descriptor;
 
   let error: unknown;
