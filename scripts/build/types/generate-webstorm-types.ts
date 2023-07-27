@@ -81,7 +81,6 @@ export function generateWebstormTypes(outputs: string[] = []) {
           if (type !== null) {
             attribute.type = type;
           }
-          // is attribute
           attributes.push(attribute);
         }
       });
@@ -102,8 +101,7 @@ export function generateWebstormTypes(outputs: string[] = []) {
         symbol: key,
       },
       slots,
-      attributes,
-      props,
+      "props": attributes,
       "js/events": events,
     });
   });
@@ -155,6 +153,8 @@ function mapType(type: Constructors) {
     case Date:
       return "Date";
   }
-  console.error(`unknown type ${type}`);
+  if (type !== null) {
+    console.warn(`unknown type ${type}`);
+  }
   return null;
 }
