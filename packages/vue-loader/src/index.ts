@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import { type Load, type Resolve, normalizePath } from "./utils";
+import { type Load, type Resolve } from "./utils";
 import { compileTsCode, compileVueCode } from "./compile";
 
 export const resolve: Resolve = async (specifier, context, defaultResolve, recursiveCall) => {
@@ -19,9 +19,8 @@ export const load: Load = async (url, context, defaultLoad) => {
   if (context.format === "vue") {
     const path = fileURLToPath(url);
     const source = fs.readFileSync(path, "utf-8");
-    console.log("path", path);
-    console.log("normalizePath", normalizePath(path));
-    let { content: code, ext } = compileVueCode(source, normalizePath(path));
+    // upgrade vue when https://github.com/vuejs/core/issues/8775 this issue is released
+    let { content: code, ext } = compileVueCode(source, path);
 
     if (ext === "ts") {
       code = await compileTsCode(code, url);
