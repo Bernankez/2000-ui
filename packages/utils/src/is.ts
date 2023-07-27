@@ -5,4 +5,5 @@ export const isWindow = (val: any): val is Window => typeof window !== "undefine
 // TODO remove to components/_utils
 export const isClient = true;
 
-export const isIOS = /* #__PURE__ */ isClient && window?.navigator?.userAgent && /iP(ad|hone|od)/.test(window.navigator.userAgent);
+export const isIOS = false;
+// export const isIOS = /* #__PURE__ */ isClient && window?.navigator?.userAgent && /iP(ad|hone|od)/.test(window.navigator.userAgent);
