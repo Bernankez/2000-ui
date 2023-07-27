@@ -31,7 +31,9 @@ async function appendCSS() {
             }
           });
           // output to style.css
-          appendFileSync(resolve(componentDir, outputName), appendFiles);
+          if (appendFiles) {
+            appendFileSync(resolve(componentDir, outputName), appendFiles);
+          }
         }
       });
     }
