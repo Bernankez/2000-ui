@@ -1,5 +1,5 @@
 <template>
-  <input ref="inputRef" v-model="modelValue" :autofocus="autofocus" class="z-w-full focus:z-outline-none z-bg-inherit" :disabled="disabled" :minlength="minlength" :class="[disabled ? 'z-cursor-not-allowed' : '']" :maxlength="maxlength" :placeholder="placeholder?.toString()" :type="showPassword ? 'text' : type" @change="onChange" />
+  <input ref="inputRef" v-model="modelValue" :autofocus="autofocus" class="z-w-full z-bg-inherit focus:z-outline-none" :disabled="disabled" :minlength="minlength" :class="[disabled ? 'z-cursor-not-allowed' : '']" :maxlength="maxlength" :placeholder="placeholder?.toString()" :type="showPassword ? 'text' : type" @change="onChange" />
 </template>
 
 <script setup lang="ts" generic="T extends string | number">

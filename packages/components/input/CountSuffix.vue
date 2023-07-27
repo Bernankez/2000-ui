@@ -1,5 +1,5 @@
 <template>
-  <div class="z-flex z-select-none z-text-4 z-text-base-400 z-items-center" @click="emit('click', $event)">
+  <div class="z-flex z-select-none z-items-center z-text-4 z-text-base-400" @click="emit('click', $event)">
     <slot></slot>
   </div>
 </template>

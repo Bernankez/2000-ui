@@ -1,6 +1,6 @@
 <template>
   <div class="z-m-3">
-    <h1 class="z-font-semibold z-text-9">
+    <h1 class="z-text-9 z-font-semibold">
       Button
     </h1>
     <ZButton type="default" icon="info">
@@ -13,7 +13,7 @@
       Hello world 你不太好
     </ZButton>
     <ZButton type="error" icon="error" />
-    <h1 class="z-font-semibold z-text-9">
+    <h1 class="z-text-9 z-font-semibold">
       Input
     </h1>
     <div class="z-flex z-flex-col z-flex-gap-4">

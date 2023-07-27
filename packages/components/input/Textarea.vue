@@ -1,7 +1,7 @@
 <template>
-  <div ref="textareaWrapperElRef" class="z-overflow-hidden z-relative z-w-full">
-    <textarea ref="textareaElRef" v-model="modelValue" :rows="minRows" class="z-w-full z-absolute z-left-0 z-top-0 z-bg-inherit focus:z-outline-none z-h-full z-resize-none z-whitespace-pre-wrap" :autofocus="autofocus" @change="onChange"></textarea>
-    <div class="z-w-full z-h-full z-whitespace-pre-wrap z-pointer-events-none z-invisible z-break-words z-textarea-mirror">
+  <div ref="textareaWrapperElRef" class="z-relative z-w-full z-overflow-hidden">
+    <textarea ref="textareaElRef" v-model="modelValue" :rows="minRows" class="z-absolute z-left-0 z-top-0 z-h-full z-w-full z-resize-none z-whitespace-pre-wrap z-bg-inherit focus:z-outline-none" :autofocus="autofocus" @change="onChange"></textarea>
+    <div class="z-textarea-mirror z-pointer-events-none z-invisible z-h-full z-w-full z-whitespace-pre-wrap z-break-words">
       {{ `${modelValue ?? ""}\r\n` }}
     </div>
   </div>

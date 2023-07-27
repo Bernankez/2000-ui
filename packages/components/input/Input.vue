@@ -11,8 +11,8 @@
       </CountSuffix>
       <PasswordSuffix v-if="type === 'password' && showPasswordOn" @mousedown="toggle('mousedown')" @click="toggle('click')">
         <slot name="password-icon" :show="showPassword">
-          <div v-if="showPassword" class="z-items-center z-inline-block i-ic:outline-visibility" draggable="false"></div>
-          <div v-else class="z-inline-block z-items-center i-ic:outline-visibility-off" draggable="false"></div>
+          <div v-if="showPassword" class="i-ic:outline-visibility z-inline-block z-items-center" draggable="false"></div>
+          <div v-else class="i-ic:outline-visibility-off z-inline-block z-items-center" draggable="false"></div>
         </slot>
       </PasswordSuffix>
     </template>

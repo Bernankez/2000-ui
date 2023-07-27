@@ -1,5 +1,5 @@
 <template>
-  <div class="z-items-center z-cursor-pointer z-flex" @mousedown="emit('mousedown', $event)" @click="emit('click', $event)">
+  <div class="z-flex z-cursor-pointer z-items-center" @mousedown="emit('mousedown', $event)" @click="emit('click', $event)">
     <slot></slot>
   </div>
 </template>

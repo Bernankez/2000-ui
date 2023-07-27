@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" role="button" :disabled="disabled" class="z-rounded-[var(--rounded-btn)] z-leading-[1] z-cursor-pointer z-select-none active:z-scale-[var(--btn-focus-scale)] z-btn z-transition-duration-[var(--animation-btn)] z-p-x-3 z-p-y-2 z-shadow-[var(--shadow-btn)]" :class="[typeClass, disabled ? 'z-btn-disabled' : '', block ? 'z-block' : 'z-inline-block']" @click="click">
+  <component :is="tag" role="button" :disabled="disabled" class="z-btn z-cursor-pointer z-select-none z-rounded-[var(--rounded-btn)] z-p-x-3 z-p-y-2 z-leading-[1] z-shadow-[var(--shadow-btn)] z-transition-duration-[var(--animation-btn)] active:z-scale-[var(--btn-focus-scale)]" :class="[typeClass, disabled ? 'z-btn-disabled' : '', block ? 'z-block' : 'z-inline-block']" @click="click">
     <slot name="icon">
       <div class="z-inline-block" :class="[iconClass]"></div>
     </slot>
