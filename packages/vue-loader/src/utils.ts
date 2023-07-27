@@ -1,4 +1,4 @@
-import { resolve } from "node:path";
+import { normalize, resolve } from "node:path";
 import { createFilesMatcher, getTsconfig, parseTsconfig } from "get-tsconfig";
 import { installSourceMapSupport } from "@esbuild-kit/core-utils";
 
@@ -53,3 +53,8 @@ const tsconfig = process.env.ESBK_TSCONFIG_PATH
 export const fileMatcher = tsconfig && createFilesMatcher(tsconfig);
 
 export const applySourceMap = installSourceMapSupport();
+
+const windowsSlashRE = /\\/g;
+export function normalizePath(p: string) {
+  return normalize(p.replace(windowsSlashRE, "/"));
+}
