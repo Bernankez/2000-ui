@@ -61,7 +61,8 @@
     "vue": ">=3.2.0"
   },
   "dependencies": {
-    "@2000-ui/utils": "workspace:*"
+    "@2000-ui/utils": "workspace:*",
+    "@vueuse/core": "^10.2.1"
   },
   "devDependencies": {
     "@iconify-json/ic": "^1.1.13",

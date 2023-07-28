@@ -87,7 +87,7 @@ export default defineConfig(() => {
         entry: resolve(componentsDir, "index.ts"),
       },
       rollupOptions: {
-        external: ["vue", "@2000-ui/utils"],
+        external: ["vue", "@2000-ui/utils", "@vueuse/core"],
         output: [
           {
             format: "es",

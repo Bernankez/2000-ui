@@ -8,8 +8,9 @@
 </template>
 
 <script setup lang="ts" generic="T extends string | number">
-import { computed, onMounted, ref, toRef, watchEffect } from "vue";
+import { computed, ref, toRef } from "vue";
 import { isClient } from "@2000-ui/utils";
+import { useResizeObserver } from "@vueuse/core";
 import type { InputProps } from ".";
 
 const props = defineProps<InputProps<T> & {
@@ -36,10 +37,7 @@ const minRows = computed(() => {
 
 const mirrorMinHeight = ref();
 const mirrorMaxHeight = ref();
-watchEffect(() => {
-  console.log(mirrorMinHeight.value);
-  console.log(mirrorMaxHeight.value);
-});
+
 const textareaWrapperElRef = ref<HTMLDivElement>();
 const textareaElRef = ref<HTMLTextAreaElement>();
 function updateTextareaMirrorStyle() {
@@ -59,13 +57,8 @@ function updateTextareaMirrorStyle() {
   }
 }
 
-onMounted(() => {
-  const resizeObserver = new ResizeObserver((entries) => {
-    for (const entry of entries) {
-      updateTextareaMirrorStyle();
-    }
-  });
-  textareaWrapperElRef.value && resizeObserver.observe(textareaWrapperElRef.value);
+useResizeObserver(textareaWrapperElRef, () => {
+  updateTextareaMirrorStyle();
 });
 
 function onChange(e: Event) {

@@ -1,8 +1,8 @@
 <template>
   <InputWrapper v-bind="props" :show-suffix="(type !== 'textarea' && showCount) || showPasswordOn">
-    <AdjustInput v-if="type === 'input' && autoAdjust" v-bind="props" v-model="mergedState" @change="onChange" />
-    <Textarea v-else-if="type === 'textarea'" v-model="mergedState" v-bind="props" @change="onChange" />
-    <NormalInput v-else v-model="mergedState" :show-password="showPassword" v-bind="props" @change="onChange" />
+    <AutoAdjustInput v-if="type === 'input' && autoAdjust" v-bind="props" v-model="mergedState" @change="onChange" />
+    <AutoAdjustTextarea v-else-if="type === 'textarea' && autoAdjust" v-model="mergedState" v-bind="props" @change="onChange" />
+    <FixedInput v-else v-model="mergedState" :show-password="showPassword" v-bind="props" @change="onChange" />
     <template #suffix>
       <CountSuffix v-if="type !== 'textarea' && showCount" @click="focusInput">
         <slot name="count" :value="valueLength">
@@ -22,14 +22,14 @@
 <script setup lang="ts" generic="T extends string | number">
 import type { Ref } from "vue";
 import { computed, ref } from "vue";
-import { on } from "@2000-ui/utils";
+import { useEventListener } from "@vueuse/core";
 import type { InputProps } from "./types";
 import InputWrapper from "./InputWrapper.vue";
 import CountSuffix from "./CountSuffix.vue";
 import PasswordSuffix from "./PasswordSuffix.vue";
-import AdjustInput from "./AdjustInput.vue";
-import Textarea from "./Textarea.vue";
-import NormalInput from "./NormalInput.vue";
+import AutoAdjustInput from "./AutoAdjustInput.vue";
+import AutoAdjustTextarea from "./AutoAdjustTextarea.vue";
+import FixedInput from "./FixedInput.vue";
 import { useMergedState } from "@/_composables";
 
 const props = withDefaults(defineProps<InputProps<T>>(), {
@@ -64,7 +64,7 @@ const showPassword = ref(false);
 function toggle(type: "mousedown" | "mouseup" | "click") {
   if (props.showPasswordOn === "mousedown" && type === "mousedown") {
     showPassword.value = true;
-    const stop = on("mouseup", document, () => {
+    const stop = useEventListener(document, "mouseup", () => {
       showPassword.value = false;
       stop();
     });
