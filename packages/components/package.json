@@ -29,7 +29,7 @@
       "import": "./es/index.mjs"
     },
     "./style.css": "./es/styles/index.css",
-    "./*": "./*"
+    "./*": ["./*", "./*.d.ts"]
   },
   "main": "lib/index.cjs",
   "module": "es/index.mjs",
