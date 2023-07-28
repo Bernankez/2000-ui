@@ -3,16 +3,18 @@
     <h1 class="z-text-9 z-font-semibold">
       Button
     </h1>
-    <ZButton type="default" icon="info">
-      Hello world 你好
-    </ZButton>
-    <ZButton type="neutral" tag="a" icon="success">
-      Hello world 你也好
-    </ZButton>
-    <ZButton disabled type="success" tag="a" icon="error">
-      Hello world 你不太好
-    </ZButton>
-    <ZButton type="error" icon="error" />
+    <div class="z-flex z-flex-wrap z-flex-gap-2">
+      <ZButton type="default" icon="info">
+        Hello world 你好
+      </ZButton>
+      <ZButton type="neutral" tag="a" icon="success">
+        Hello world 你也好
+      </ZButton>
+      <ZButton disabled type="success" tag="a" icon="error">
+        Hello world 你不太好
+      </ZButton>
+      <ZButton type="error" icon="error" />
+    </div>
     <h1 class="z-text-9 z-font-semibold">
       Input
     </h1>
