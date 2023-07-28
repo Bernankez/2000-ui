@@ -7,5 +7,6 @@ defineBuild(async () => {
   const diff = execSync("git diff --exit-code").toString();
   if (diff) {
     await $("git commit --all -m \"docs: update README\"", { successMessage: "committed" });
+    await $("git push", { successMessage: "pushed" });
   }
 });
