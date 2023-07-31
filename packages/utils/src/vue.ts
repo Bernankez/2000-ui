@@ -10,3 +10,14 @@ export function withInstall(components: Record<string, DefineComponent>) {
     });
   };
 }
+
+// see https://github.com/vuejs/language-tools/issues/3206#issuecomment-1624541884
+export type ComponentInstance<T> = T extends new (...args: any[]) => infer R
+  ? R
+  : T extends (...args: any[]) => infer R
+    ? R extends { __ctx?: infer K }
+      ? Exclude<K, void> extends { expose: (...args: infer K) => void }
+        ? K[0] & InstanceType<DefineComponent>
+        : any
+      : any
+    : any;

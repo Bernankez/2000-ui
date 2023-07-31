@@ -1,12 +1,13 @@
 <template>
-  <InputWrapper v-bind="props" :show-suffix="(type !== 'textarea' && showCount) || showPasswordOn">
-    <AutoAdjustInput v-if="type === 'input' && autoAdjust" v-bind="props" v-model="mergedState" @change="onChange" />
+  <InputWrapper v-bind="props" :show-suffix="showCount || showPasswordOn">
+    <AutoAdjustInput v-if="type === 'input' && autoAdjust" ref="autoAdjustInputElRef" v-bind="props" v-model="mergedState" @change="onChange" />
     <AutoAdjustTextarea v-else-if="type === 'textarea' && autoAdjust" v-model="mergedState" v-bind="props" @change="onChange" />
-    <FixedInput v-else v-model="mergedState" :show-password="showPassword" v-bind="props" @change="onChange" />
+    <FixedTextarea v-else-if="type === 'textarea'" v-model="mergedState" v-bind="props" @change="onChange" />
+    <FixedInput v-else ref="fixedInputElRef" v-model="mergedState" :show-password="showPassword" v-bind="props" @change="onChange" />
     <template #suffix>
-      <CountSuffix v-if="type !== 'textarea' && showCount" @click="focusInput">
+      <CountSuffix v-if="showCount" :class="[type === 'textarea' ? 'z-absolute z-bottom-1 z-right-2 z-pointer-events-none' : '']" @click="focusInput">
         <slot name="count" :value="valueLength">
-          {{ `${valueLength}/${maxlength}` }}
+          {{ `${valueLength}/${maxlength ?? "99+"}` }}
         </slot>
       </CountSuffix>
       <PasswordSuffix v-if="type === 'password' && showPasswordOn" @mousedown="toggle('mousedown')" @click="toggle('click')">
@@ -23,6 +24,7 @@
 import type { Ref } from "vue";
 import { computed, ref } from "vue";
 import { useEventListener } from "@vueuse/core";
+import type { ComponentInstance } from "@2000-ui/utils";
 import type { InputProps } from "./types";
 import InputWrapper from "./InputWrapper.vue";
 import CountSuffix from "./CountSuffix.vue";
@@ -30,6 +32,7 @@ import PasswordSuffix from "./PasswordSuffix.vue";
 import AutoAdjustInput from "./AutoAdjustInput.vue";
 import AutoAdjustTextarea from "./AutoAdjustTextarea.vue";
 import FixedInput from "./FixedInput.vue";
+import FixedTextarea from "./FixedTextarea.vue";
 import { useMergedState } from "@/_composables";
 
 const props = withDefaults(defineProps<InputProps<T>>(), {
@@ -55,9 +58,16 @@ function onChange(value: T) {
   emit("change", value);
 }
 
-const inputRef = ref<HTMLInputElement>();
+const autoAdjustInputElRef = ref<ComponentInstance<typeof AutoAdjustInput> >();
+const fixedInputElRef = ref<ComponentInstance<typeof FixedInput>>();
 function focusInput() {
-  inputRef.value?.focus();
+  if (props.type !== "textarea") {
+    if (props.type !== "password" && props.autoAdjust) {
+      autoAdjustInputElRef.value?.focus();
+    } else {
+      fixedInputElRef.value?.focus();
+    }
+  }
 }
 
 const showPassword = ref(false);

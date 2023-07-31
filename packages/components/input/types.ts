@@ -9,6 +9,7 @@ export interface InputProps<T> {
   maxlength?: number;
   autofocus?: boolean;
   autoAdjust?: boolean | { minRows?: number; maxRows?: number };
+  rows?: number;
   showCount?: boolean;
   showPasswordOn?: "mousedown" | "click";
   style?: StyleValue;
